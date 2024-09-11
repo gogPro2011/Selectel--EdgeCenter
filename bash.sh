@@ -74,7 +74,7 @@ source ./octo_venv/bin/activate
 pip install octodns octodns_selectel octodns_edgecenter
 deactivate
 read -p "Введите keystone-токен Selectel: " selectel_token
-read -p "Введите токен EdgeCenter" ec_token
+read -p "Введите токен EdgeCenter: " ec_token
 cat > ./config/config.yaml <<EOL
 processors:
     no-root-ns:
