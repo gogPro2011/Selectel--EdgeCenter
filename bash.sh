@@ -5,59 +5,57 @@ update_repos() {
     if command -v apt-get &> /dev/null; then
         echo "Используется пакетный менеджер APT (Debian/Ubuntu). Обновляем репозитории..."
         sudo apt-get update
-        echo "Устанавливаем Python 3.12 и venv..."
+        echo "Устанавливаем Python 3.11 и venv..."
         sudo apt-get install -y software-properties-common
-        sudo add-apt-repository ppa:deadsnakes/ppa -y
-        sudo apt-get update
-        sudo apt-get install -y python3.12 python3.12-venv
+        sudo apt-get install -y python3 python3-venv
 
     elif command -v yum &> /dev/null; then
         echo "Используется пакетный менеджер YUM (CentOS/RHEL). Обновляем репозитории..."
         sudo yum makecache fast
-        echo "Устанавливаем Python 3.12 и venv..."
+        echo "Устанавливаем Python 3.11 и venv..."
         sudo yum install -y gcc openssl-devel bzip2-devel libffi-devel
         cd /usr/src
-        sudo wget https://www.python.org/ftp/python/3.12.0/Python-3.12.0.tgz
-        sudo tar xzf Python-3.12.0.tgz
-        cd Python-3.12.0
+        sudo wget https://www.python.org/ftp/python/3.11.0/Python-3.11.0.tgz
+        sudo tar xzf Python-3.11.0.tgz
+        cd Python-3.11.0
         sudo ./configure --enable-optimizations
         sudo make altinstall
 
     elif command -v dnf &> /dev/null; then
         echo "Используется пакетный менеджер DNF (Fedora). Обновляем репозитории..."
         sudo dnf makecache
-        echo "Устанавливаем Python 3.12 и venv..."
+        echo "Устанавливаем Python 3.11 и venv..."
         sudo dnf install -y gcc openssl-devel bzip2-devel libffi-devel
         cd /usr/src
-        sudo wget https://www.python.org/ftp/python/3.12.0/Python-3.12.0.tgz
-        sudo tar xzf Python-3.12.0.tgz
-        cd Python-3.12.0
+        sudo wget https://www.python.org/ftp/python/3.11.0/Python-3.11.0.tgz
+        sudo tar xzf Python-3.11.0.tgz
+        cd Python-3.11.0
         sudo ./configure --enable-optimizations
         sudo make altinstall
 
     elif command -v zypper &> /dev/null; then
         echo "Используется пакетный менеджер Zypper (OpenSUSE). Обновляем репозитории..."
         sudo zypper refresh
-        echo "Устанавливаем Python 3.12 и venv..."
+        echo "Устанавливаем Python 3.11 и venv..."
         sudo zypper install -y python3
 
     elif command -v pacman &> /dev/null; then
         echo "Используется пакетный менеджер Pacman (Arch Linux). Обновляем репозитории..."
         sudo pacman -Sy
-        echo "Устанавливаем Python 3.12 и venv..."
+        echo "Устанавливаем Python 3.11 и venv..."
         sudo pacman -S --noconfirm python
 
     elif command -v apk &> /dev/null; then
         echo "Используется пакетный менеджер APK (Alpine Linux). Обновляем репозитории..."
         sudo apk update
-        echo "Устанавливаем Python 3.12 и venv..."
+        echo "Устанавливаем Python 3.11 и venv..."
         sudo apk add --no-cache python3
 
     elif command -v emerge &> /dev/null; then
         echo "Используется пакетный менеджер Portage (Gentoo). Обновляем репозитории..."
         sudo emerge --sync
-        echo "Устанавливаем Python 3.12 и venv..."
-        sudo emerge dev-lang/python:3.12
+        echo "Устанавливаем Python 3.11 и venv..."
+        sudo emerge dev-lang/python:3.11
 
     else
         echo "Пакетный менеджер не найден. Обновление репозиториев и установка Python невозможны."
