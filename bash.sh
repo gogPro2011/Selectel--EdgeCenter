@@ -65,6 +65,7 @@ update_repos() {
 
 # Вызываем функцию обновления и установки
 update_repos
+cd ~
 mkdir ~/octodns ~/octodns/config
 cd octodns
 python3 -m venv octo_venv
